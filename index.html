@@ -1,0 +1,59 @@
+<!doctype html>
+<!--
+/*
+* Author: Gavin Murphy
+* Assignment: WE4 Mobile Web Applications, Digital Skills Academy
+* Date : 2016/09/12
+* Ref: App is losely based on a treehouse tutorial I completed in Feburary, however it has been improved so it has extra functionality and added on to so it meets the criteria for the asseesment
+*/
+-->
+
+<html lang="en" ng-app="todoListApp">
+<head>
+  <title></title>
+  <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" type="text/css">
+  <link href="styles/main.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<h1>Angular Todo App</h1>
+  
+<div class="list" ng-controller="mainCtrl">
+     <div class="inputTodo">
+<!--when clicked append a todo on to the array of todos-->
+          <form>
+               <input name="newTodo" id="inputTodo" ng-model="inputTodo">
+               <a href="" ng-click="addTodo(inputTodo)">
+               <button>Add New Task</button>
+               </a>
+          </form>
+     </div>
+     
+<!--use ng class to have a choice between two classes depending on the state of the todo-->
+<!--order the list of todos with the checked tasks to the bottom-->      
+     <div class="todoContainer" ng-class="{'editing-item': editing, 'checked': todo.checked}" 
+     ng-repeat="todo in todos | orderBy: 'checked'" ng-init="todo.checked = false">
+     
+<!--update the model to reflect if the todo has been checked-->     
+          <input ng-model="todo.checked" type="checkbox"/>
+          <span ng-click="todo.checked = !todo.checked"></span>
+          
+<!--when editing is true hide label-->
+          <label ng-click="editing = true" ng-hide="editing" ng-click="helloWorld()">{{todo.name}}</label>
+          
+<!-- when editing is true show form input-->          
+          <input ng-change="todo.edited = true" ng-blur="editing = false;" ng-show="editing" ng-model="todo.name" class="editing-label"          type="text"/>
+               <div class="actions">
+               
+               <a href="" ng-click="saveTodos(todo)"><img class="tick" src="tick.png" width="26" height="20" alt=""/></a>
+               <a href="" ng-click="deleteTodo(todo, $index)"  class="Delete"><img src="x.png" width="20" height="20" alt=""/></a>
+               </div>
+      </div>
+</div>
+
+  <script src="vendor/angular.js" type="text/javascript"></script>  
+  <script src="scripts/controllers/MyController.js" type="text/javascript"></script>
+  <script src="scripts/services/data.js" type="text/javascript"></script>
+  
+</body>
+</html>
