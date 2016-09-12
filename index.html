@@ -39,7 +39,7 @@
           <span ng-click="todo.checked = !todo.checked"></span>
           
 <!--when editing is true hide label-->
-          <label ng-click="editing = true" ng-hide="editing" ng-click="helloWorld()">{{todo.name}}</label>
+          <label ng-click="editing = true" ng-hide="editing">{{todo.name}}</label>
           
 <!-- when editing is true show form input-->          
           <input ng-change="todo.edited = true" ng-blur="editing = false;" ng-show="editing" ng-model="todo.name" class="editing-label"          type="text"/>
